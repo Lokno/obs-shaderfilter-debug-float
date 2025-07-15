@@ -24,6 +24,16 @@ uniform float Num<
     float step = 0.01;
 > = 1234.5f;
 
+uniform float Scale<
+    string label = "Scale";
+    string widget_type = "slider";
+    float minimum = 1.0;
+    float maximum = 50.0;
+    float step = 1.0;
+> = 4.0f;
+
+// Debug Float Code Start
+
 int getDigit(float x, int position, int sign, int integer_length, int decimal_length) {
     const int ASCII_ZERO = 0;
     const int ASCII_PERIOD = 10;
@@ -65,6 +75,7 @@ int getDigit(float x, int position, int sign, int integer_length, int decimal_le
 float3 displayFloat(float2 bottomLeft, float2 uv, float value, int sign, int integer_length, int decimal_length, float scale) {
 
     // Encoded millitext characters (5x2) 
+    // http://www.msarnoff.org/millitext/
     // 0123456789. -
     static const int millitext_digits[13] = {
         576339299, 536883801, 814381255, 579498183,
@@ -110,20 +121,33 @@ float3 displayFloat(float2 bottomLeft, float2 uv, float value, int sign, int int
     return color;
 }
 
+// Debug Float Code End
+
 float4 mainImage(VertData v_in) : TARGET
 {
     float2 fragCoord = v_in.uv * uv_size;
 
-    float2 p = float2(10.0f,10.0);
+    // Flip Y
+    fragCoord.y = uv_size.y - fragCoord.y;
+
+    float2 bottomLeft = float2(30.0f,10.0+5.0f*Scale);
 
     // elapsed_time_show - elapsed time since the shader was last toggled for display
-    float3 textColor = displayFloat(p, fragCoord, elapsed_time_show, 0, 7, 4, 4.0f);
+    float3 textColor = displayFloat(bottomLeft, fragCoord, elapsed_time_show, 0, 6, 4, Scale);
 
-    p.x += 6.0f;
-    p.y += 25.0f;
-    textColor += displayFloat(p, fragCoord, Num, 1, 5, 2, 4.0f);
+
+    // Display slider number
+    bottomLeft.y += 6.0f * Scale;
+    textColor += displayFloat(bottomLeft, fragCoord, Num, 1, 5, 2, Scale);
+
+    // display height
+    bottomLeft = float2(0.0f,uv_size.y-5.0f*Scale);
+    textColor += displayFloat(bottomLeft, fragCoord, uv_size.y, 0, 4, 0, Scale);
+    bottomLeft = float2(uv_size.x-2.0f*4.0f*Scale,0.0f);
+    textColor += displayFloat(bottomLeft, fragCoord, uv_size.x, 0, 4, 0, Scale);
+
 
     float4 src = image.Sample(textureSampler, v_in.uv);
 
-    return clamp(float4(textColor,textColor.r) + src.rgba, 0.0f, 1.0f);
+    return clamp(float4(textColor,textColor.r) + src, 0.0f, 1.0f);
 }
