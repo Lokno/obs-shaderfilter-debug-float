@@ -10,7 +10,7 @@ It can also be used to display text, see the Shadertoy section at the bottom of 
 
 The  characters are stored in integers as Millitext. Millitext is a subpixel font created by Matt Sarnoff (https://www.msarnoff.org/millitext/)
 
-At `scale=1.0` this text is render subpixel. If the source is displayed pixel perfect on your monitor, they will be legible (although it helps to use your phone)
+At `scale=1.0` this text is rendered subpixel. If the OBS source is displayed pixel perfect on your monitor, the characters will be legible (although it helps to use a phone)
 
 ![alt text](https://github.com/Lokno/obs-shaderfilter-debug-float/blob/main/media/subpixel.png "Close-up screenshot of a monitor demostrating how millitext looks when displayed using subpixels")
 
