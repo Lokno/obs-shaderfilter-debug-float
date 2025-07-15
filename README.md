@@ -40,11 +40,11 @@ So, everything between the `Debug Float Code` comments.
 float4 mainImage(VertData v_in) : TARGET
 {
     float2 bottomLeft = float2(10.0f,10.0f);  // Offset in pixel from lower-left corner
-    int displaySign   = 0                     // Whether or not to display sign [0,1]
+    int displaySign   = 0;                    // Whether or not to display sign [0,1]
     float myFloat     = 42.0;                 // Number to display
     float2 fragCoord  = float2(v_in.x,1.0-v_in.y) * uv_size; // get coordinates in pixels (and flip y)
-    integerLength     = 4;                    // characters left of decimal point
-    int decimalLength = 0;                    // characters right of decimal point
+    integerLength     = 2;                    // characters left of decimal point
+    int decimalLength = 1;                    // characters right of decimal point
     float scale       = 4.0;                  // scaling factor (1.0 is subpixel, larger will be bigger)
 
     // call that actual function
