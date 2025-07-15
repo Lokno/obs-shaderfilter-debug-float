@@ -1,21 +1,25 @@
 # obs-shaderfilter-debug-float
 obs-shaderfilter shader capable of displaying float variables
 
+![alt text](https://github.com/Lokno/obs-shaderfilter-debug-float/blob/main/media/screenshot.png "Screenshot of black raspberry ice cream post-processed with a glitch shader and debug float shader")
+
 The file `debug_float.shader` is a working `obs-shaderfilter` shader which includes the function `displayFloat()`.
 This function will take a float value within a shader and render it as digit characters onto your OBS source.
 This is incredibly useful for displaying values while debugging shaders. 
 It can also be used to display text, see the Shadertoy section at the bottom of this README.
 
-The digit characters are stored in integers as Millitext. Millitext is a subpixel font created by Matt Sarnoff (https://www.msarnoff.org/millitext/)
+The  characters are stored in integers as Millitext. Millitext is a subpixel font created by Matt Sarnoff (https://www.msarnoff.org/millitext/)
 
-At `scale=1.0` this text is render subpixel. 
+At `scale=1.0` this text is render subpixel. If the source is displayed pixel perfect on your monitor, they will be legible (although it helps to use your phone)
+
+![alt text](https://github.com/Lokno/obs-shaderfilter-debug-float/blob/main/media/subpixel.png "Close-up screenshot of a monitor demostrating how millitext looks when displayed using subpixels")
 
 ## Installation 
 
 1. Update your graphics drivers
 2. Update OBS
-3. Download and install the latest version of obs-shaderfilter (https://github.com/exeldro/obs-shaderfilter/releases/)
-4. Download this repo or its single source file (https://raw.githubusercontent.com/Lokno/obs-shaderfilter-debug-float/refs/heads/main/debug_float.shader)
+3. Download and install the latest version of [`obs-shaderfilter`](https://github.com/exeldro/obs-shaderfilter/releases/)
+4. Download this repo or its [single source file](https://raw.githubusercontent.com/Lokno/obs-shaderfilter-debug-float/refs/heads/main/debug_float.shader).
 
 ## Usage
 
